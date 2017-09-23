@@ -1,0 +1,120 @@
+Ansible Installation for Ubuntu:
+
+http://docs.ansible.com/ansible/latest/intro_installation.html#latest-
+
+releases-via-apt-ubuntu
+
+$ sudo apt-get update
+$ sudo apt-get install software-properties-common
+$ sudo apt-add-repository ppa:ansible/ansible
+$ sudo apt-get update
+$ sudo apt-get install ansible
+$ sudo apt-get install python or python3
+
+Post installation navigate to /etc/ansible and list
+
+Hosts and Groups:
+
+Inventory files consists of selecting portion of systems listed.
+
+From 2.4 Ansible has inventory plugins to make this flexible.
+
+Inventory file can be of many formats like yaml, int, etc.
+
+http://docs.ansible.com/ansible/latest/intro_inventory.html
+
+INI Format:
+
+mail.example.com
+
+[webservers]
+foo.example.com
+bar.example.com
+
+[dbservers]
+one.example.com
+two.example.com
+three.example.com
+
+Heading above in brackets are group to clasify the kind of server details.
+
+YAML Format:
+
+all:
+  hosts:
+    mail.example.com
+  children:
+    webservers:
+      hosts:
+        foo.example.com:
+        bar.example.com:
+    dbservers:
+      hosts:
+        one.example.com:
+        two.example.com:
+        three.example.com:
+
+Sample Playbooks:
+
+https://github.com/becloudready/devopstraining
+
+Write a playbook to create EC2 instance.
+
+An issue to install boto display.
+
+install python pip:
+$ apt install python-pip
+$ pip install boto
+$ pip install --upgrade pip
+$ pip --version
+
+What is boto?
+
+Boto is a software development kit (SDK) designed to improve the use of 
+
+the Python programming language in Amazon Web Services.
+
+Boto has become the official AWS SDK for Python. Boto versions include 
+
+Boto, Boto3 and Botocore. Boto3 is the latest version of the SDK, 
+
+providing support for Python versions 2.6.5, 2.7 and 3.3. Boto3 includes 
+
+several service-specific features to ease development. Boto supports all 
+
+current AWS cloud services, including Elastic Compute Cloud, DynamoDB, AWS 
+
+Config, CloudWatch and Simple Storage Service.
+ 
+http://searchaws.techtarget.com/definition/Boto
+
+Sample playbook to create a EC2 Instance:
+---
+  # Talk to all hosts just so we can learn about them...
+- name: Create a sandbox instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+    aws_access: XXXXXXXX
+    aws_secret: XXXXX
+    keypair: demo-ans123
+    instance_type: t2.micro
+    image: ami-cd0f5cb6
+    region: us-east-1
+  tasks:
+    - name: Launch instance
+      ec2:
+         aws_access_key: "{{ aws_access }}"
+         aws_secret_key: "{{ aws_secret }}"
+         key_name: "{{ keypair }}"
+         group: default
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+      register: ec2
+    - name: Print all ec2 variables
+      debug: var=ec2
+
+http://docs.ansible.com/ansible/latest/ec2_module.html
+
