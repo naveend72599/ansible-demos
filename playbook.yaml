@@ -1,0 +1,26 @@
+---
+  # Talk to all hosts just so we can learn about them...
+- name: Create a sandbox instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+    aws_access: AKIAI35ME5FXFTOC5MIA
+    aws_secret: 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
+    keypair: demo-ans123
+    instance_type: t2.micro
+    image: ami-cd0f5cb6
+    region: us-east-1
+  tasks:
+    - name: Launch instance
+      ec2:
+         aws_access_key: "{{ aws_access }}"
+         aws_secret_key: "{{ aws_secret }}"
+         key_name: "{{ keypair }}"
+         group: default
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+      register: ec2
+    - name: Print all ec2 variables
+      debug: var=ec2
