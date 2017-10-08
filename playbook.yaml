@@ -4,8 +4,8 @@
   hosts: localhost
   gather_facts: False
   vars:
-    aws_access: AKIAI35ME5FXFTOC5MIA
-    aws_secret: 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
+  # aws_access: AKIAI35ME5FXFTOC5MIA
+  # aws_secret: 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
     keypair: demo-ans123
     instance_type: t2.micro
     image: ami-cd0f5cb6
