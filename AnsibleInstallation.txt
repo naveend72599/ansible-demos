@@ -118,3 +118,16 @@ Sample playbook to create a EC2 Instance:
 
 http://docs.ansible.com/ansible/latest/ec2_module.html
 
+
+Follow Below steps to integrate with Jenkins:
+
+1.Install Ansible Plugins to Jenkins
+2.configure Ansible at jenkins
+
+write a playbook
+configure Jenkins for Ansible playbook path
+keep playbook within respository
+execute playbook via jenkins Job
+
+https://dzone.com/articles/running-ansible-playbooks-from-jenkins
+
