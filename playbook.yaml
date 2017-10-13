@@ -6,7 +6,7 @@
   vars:
     aws_access: AKIAJVLBHJRIAKHWTWSA
     aws_secret: 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
-    keypair: DemoJenkins 
+    keypair: DemoJenkins1
     instance_type: t2.micro
     image: ami-10547475
     region: us-east-2
