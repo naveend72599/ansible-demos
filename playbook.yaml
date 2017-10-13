@@ -4,12 +4,12 @@
   hosts: localhost
   gather_facts: False
   vars:
-    aws_access: 
-    aws_secret: 
-    keypair: DK-Practise 
+    aws_access: AKIAJVLBHJRIAKHWTWSA
+    aws_secret: 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
+    keypair: DemoJenkins 
     instance_type: t2.micro
-    image: ami-cd0f5cb6
-    region: us-east-1
+    image: ami-10547475
+    region: us-east-2
   tasks:
     - name: Launch instance
       ec2:
