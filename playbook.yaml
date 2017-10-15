@@ -4,8 +4,8 @@
   hosts: localhost
   gather_facts: False
   vars:
-    aws_access: AKIAJVLBHJRIAKHWTWSA
-    aws_secret: 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
+    aws_access: 
+    aws_secret: 
     keypair: DemoJenkins1
     instance_type: t2.micro
     image: ami-10547475
